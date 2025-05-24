@@ -40,7 +40,7 @@
 2.  打开 Chrome 浏览器，在地址栏输入 `chrome://extensions` 并回车。
 3.  确保右上角的"开发者模式 (Developer mode)"已启用。
 4.  点击"加载已解压的扩展程序 (Load unpacked)"按钮。
-5.  选择你刚才解压或克隆的 `twitter_comment` 文件夹。
+5.  选择你刚才解压或克隆的 `x_comments` 文件夹。
 6.  扩展程序图标应该会出现在你的浏览器工具栏中。
 
 
