@@ -1,4 +1,4 @@
-# 推特AI锐评 (twitter_comment)
+# 推特AI锐评 (x_comments)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
