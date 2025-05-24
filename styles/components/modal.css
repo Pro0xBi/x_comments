@@ -1,0 +1,255 @@
+/* styles/components/modal.css - Styles for ModalComponent */
+
+/* Styles for ModalComponent migrated from js/components/modal/styles.js */
+
+/* Scoped overlay style */
+[data-component-id^="modalcomponent-"].ai-result-modal-overlay {
+    /* 基础布局 */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    
+    /* 视觉样式 - 轻盈通透 */
+    /* background: rgba(0, 0, 0, 0.5); */ /* <-- 注释掉背景色 */
+    /* backdrop-filter: blur(8px); */     /* <-- 注释掉背景模糊 */
+    /* -webkit-backdrop-filter: blur(8px); */ /* <-- 注释掉背景模糊 (兼容性) */
+    
+    /* 动画效果 */
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 显示状态 */
+[data-component-id^="modalcomponent-"].ai-result-modal-overlay.visible {
+    display: flex;
+    opacity: 1;
+}
+
+/* 内容容器 */
+[data-component-id^="modalcomponent-"] .ai-result-modal-content {
+    /* 基础布局 */
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 90%;
+    max-width: 700px;
+    max-height: 85vh;
+    
+    /* 盒模型 - 圆润 */
+    padding: var(--space-lg) var(--space-xl);
+    border-radius: var(--radius-lg);
+    
+    /* 视觉样式 - 调整透明度 */
+    background: rgba(var(--surface-color-rgb), 0.98); /* <-- 提高不透明度到 98% */
+    border: 1px solid var(--border-color);
+    /* box-shadow: var(--shadow-lg); */ /* <-- 保留之前的阴影变量定义，但下面会重新定义 */
+    
+    /* 强制浅色主题变量 & 微调阴影 */
+    --surface-color-rgb: 255, 255, 255; 
+    --border-color-rgb: 121, 75, 196; 
+    --text-color: #333333; 
+    --text-secondary: #666666; 
+    --shadow-lg: 0 6px 12px rgba(0, 0, 0, 0.1); /* <-- 修改阴影，更柔和 */
+    box-shadow: var(--shadow-lg); /* 应用修改后的阴影 */
+    
+    /* 动画效果 */
+    transform: scale(0.95);
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 内容容器显示状态 */
+[data-component-id^="modalcomponent-"].visible .ai-result-modal-content {
+    transform: scale(1);
+    opacity: 1;
+}
+
+/* 关闭按钮 */
+[data-component-id^="modalcomponent-"] .ai-result-modal-close {
+    /* 基础布局 */
+    position: absolute;
+    top: var(--space-md);
+    right: var(--space-md);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    
+    /* 盒模型 - 圆润 */
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-full);
+    
+    /* 视觉样式 */
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    
+    /* 交互样式 */
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+[data-component-id^="modalcomponent-"] .ai-result-modal-close:hover {
+    background: rgba(var(--surface-color-rgb), 0.1);
+    color: var(--text-color);
+    transform: rotate(90deg);
+}
+
+/* 内容区域 */
+[data-component-id^="modalcomponent-"] .ai-result-modal-body {
+    /* 基础布局 */
+    overflow-y: auto;
+    flex-grow: 1;
+    
+    /* 盒模型 - 移除顶部边框和多余内边距 */
+    margin-top: 0; /* 移除顶部外边距 */
+    padding-top: 0; /* 移除顶部内边距 */
+    padding-right: var(--space-sm);
+    /* border-top: 1px solid var(--border-color); */ /* <-- 移除顶部边框 */
+    
+    /* 文字样式 */
+    line-height: 1.6;
+    font-size: 15px;
+    color: var(--text-color);
+}
+
+/* 内容样式 */
+[data-component-id^="modalcomponent-"] .ai-result-modal-body h3 {
+    margin-top: var(--space-lg);
+    margin-bottom: var(--space-sm);
+    font-size: 1.3em;
+    color: var(--text-color);
+    font-weight: var(--font-weight-bold);
+}
+
+[data-component-id^="modalcomponent-"] .ai-result-modal-body p {
+    margin-bottom: var(--space-md);
+    color: var(--text-color);
+}
+
+[data-component-id^="modalcomponent-"] .ai-result-modal-body ul {
+    padding-left: var(--space-xl);
+    margin-bottom: var(--space-md);
+}
+
+[data-component-id^="modalcomponent-"] .ai-result-modal-body li {
+    margin-bottom: var(--space-xs);
+    color: var(--text-color);
+}
+
+/* Scoped Dark mode adjustments - REMOVED as variables handle this */
+/* @media (prefers-color-scheme: dark) { ... } */
+
+/* --- Styles for Original Tweet and AI Analysis Sections --- */
+
+/* Style the original tweet container - simplified */
+.ai-result-modal-content .original-tweet-card {
+  /* Remove background and border, act as layout container */
+  padding: 0; /* No padding needed */
+  margin-bottom: var(--space-md); /* Space below the original tweet block */
+}
+
+/* Style the author line within the container */
+.ai-result-modal-content .original-tweet-card .tweet-author {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-xs);
+  margin-bottom: var(--space-sm); /* Space between author and tweet text */
+}
+
+/* Style the author's display name */
+.ai-result-modal-content .original-tweet-card .author-display-name {
+  font-weight: bold;
+  color: var(--text-color);
+}
+
+/* Style the author's username */
+.ai-result-modal-content .original-tweet-card .author-username {
+  color: var(--text-secondary);
+  font-size: 0.9em;
+}
+
+/* Style the tweet text - Apply styles from .marker-content .content */
+.ai-result-modal-content .original-tweet-card .tweet-text {
+  color: var(--text-color);
+  font-size: 14px;      /* Match .content */
+  line-height: 1.6;     /* Match .content */
+  word-break: break-word; /* Match .content */
+  margin: 0;
+}
+
+/* Style the separator line - Adjust margins */
+.ai-result-modal-content hr.content-separator {
+  margin-top: var(--space-lg); /* Space above separator */
+  margin-bottom: var(--space-lg); /* Space below separator */
+  border: none;
+  border-top: 1px solid var(--border-color, #ccc);
+}
+
+/* Analysis section spacing */
+.ai-result-modal-content .ai-analysis-section {
+  margin-top: 0;
+  margin-bottom: 1em;
+  font-style: italic; /* Make AI analysis result text italic */
+}
+
+/* Ensure paragraphs within AI section have default margin (if needed) */
+.ai-result-modal-content .ai-analysis-section p {
+    margin-bottom: 0.8em;
+}
+
+/* Reset margin/padding for the direct div containing parsed markdown */
+.ai-result-modal-content .ai-analysis-section > div {
+    margin: 0;
+    padding: 0;
+}
+
+/* Ensure strong tag within paragraphs has default weight */
+.ai-result-modal-content p strong {
+    font-weight: bold;
+}
+
+/* --- 新增 Modal Header 样式 --- */
+[data-component-id^="modalcomponent-"] .modal-header {
+    display: flex;
+    align-items: center;
+    padding-bottom: var(--space-md); /* Header 下方间距 */
+    margin-bottom: var(--space-lg); /* Header 与内容区域的间距 */
+    border-bottom: 1px solid; /* <-- 将颜色分离出来 */
+    border-bottom-color: #e0e0e0; /* <-- 使用不透明的浅灰色作为分隔线颜色 */
+}
+
+[data-component-id^="modalcomponent-"] .modal-logo {
+    width: 24px;
+    height: 24px;
+    /* background-image: url('/icons/icon16.png'); */ /* <-- 移除背景图片 */
+    /* background-size: contain; */
+    /* background-repeat: no-repeat; */
+    /* background-position: center; */
+    border-radius: var(--radius-sm);
+    margin-right: var(--space-sm);
+    display: inline-block; /* 确保 span 有尺寸 */
+    vertical-align: middle; /* 垂直居中对齐 */
+}
+
+/* 新增：控制内部 img 元素的样式 */
+[data-component-id^="modalcomponent-"] .modal-logo-img {
+    display: block; /* 让图片成为块级元素 */
+    width: 100%;    /* 填充容器宽度 */
+    height: 100%;   /* 填充容器高度 */
+    object-fit: contain; /* 保持图片比例 */
+}
+
+[data-component-id^="modalcomponent-"] .modal-title {
+    font-size: 1.2em; /* 调整标题大小 */
+    font-weight: var(--font-weight-bold);
+    color: var(--text-color);
+    margin: 0; /* 移除默认 margin */
+}
+/* --- 结束新增 Header 样式 --- */ 

@@ -1,0 +1,80 @@
+/* styles/components/background-info.css - Styles for BackgroundInfo component */
+
+/* Scope styles to BackgroundInfo instances */
+[data-component-id^="backgroundinfo-"] {
+    /* 基础布局 */
+    width: 100%;
+    max-width: 480px;
+    margin: 0 auto;
+    
+    /* 视觉样式 - 轻盈通透 */
+    background: rgba(var(--surface-color-rgb), 0.5);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-radius: var(--radius-lg);
+    padding: var(--space-sm);
+}
+
+[data-component-id^="backgroundinfo-"] .background-info-textarea {
+    /* 基础布局 */
+    width: 100%;
+    min-height: 100px;
+    max-height: 120px;
+    padding: var(--space-sm);
+    
+    /* 盒模型 - 圆润 */
+    border: 1px solid rgba(var(--border-color-rgb), 0.2);
+    border-radius: var(--radius-lg);
+    
+    /* 视觉样式 - 轻盈通透 */
+    background: rgba(var(--surface-color-rgb), 0.8);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    color: var(--text-color);
+    
+    /* 文字样式 */
+    font-size: 14px;
+    line-height: 1.6;
+    resize: vertical;
+    
+    /* 动画效果 */
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-component-id^="backgroundinfo-"] .background-info-textarea:focus {
+    /* 视觉样式 */
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px var(--primary-transparent);
+    background: rgba(var(--surface-color-rgb), 0.9);
+    
+    /* 动画效果 */
+    transform: translateY(-1px);
+}
+
+[data-component-id^="backgroundinfo-"] .background-info-textarea::placeholder {
+    color: var(--text-secondary);
+    opacity: 0.7;
+}
+
+[data-component-id^="backgroundinfo-"] .character-counter {
+    /* 基础布局 */
+    text-align: right;
+    margin-top: var(--space-xs);
+    
+    /* 文字样式 */
+    font-size: 12px;
+    color: var(--text-secondary);
+    opacity: 0.8;
+    
+    /* 动画效果 */
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-component-id^="backgroundinfo-"] .character-counter.limit-reached {
+    color: var(--error-color);
+    opacity: 1;
+    transform: scale(1.05);
+}
+
+/* Dark mode (Scoped) - REMOVED as variables handle this */
+/* @media (prefers-color-scheme: dark) { ... } */ 

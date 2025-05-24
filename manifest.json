@@ -1,0 +1,103 @@
+{
+  "manifest_version": 3,
+  "name": "AI锐评",
+  "version": "1.0",
+  "description": "Add character to your tweets - AI-powered role-based commenting assistant",
+  "permissions": [
+    "storage"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://*.twitter.com/*", "*://*.x.com/*"],
+      "js": [
+        "js/libs/DOMPurify-3.2.6/dist/purify.min.js",
+        "js/utils/crypto/cryptoUtils.js",
+        "js/utils/domUtils.js",
+        "js/utils/SimpleMarkdown.js",
+        "js/utils/themeUtils.js",
+        "js/components/base/UIComponent.js",
+        "js/services/core/EventManager.js",
+        "js/services/core/ServiceContainer.js",
+        "js/config/rolesConfig.js",
+        "js/services/options/apiConfigManager.js",
+        "js/services/AIService.js",
+        "js/services/data/EnhancedDataExtractor.js",
+        "js/components/base/UIComponentFactory.js",
+        "js/components/modal/ModalComponent.js",
+        "js/components/marker/MarkerComponent.js",
+        "js/components/marker/analyze-button-constants.js",
+        "js/components/marker/AnalyzeButton.js",
+        "js/components/BackgroundInfo/BackgroundInfo.js",
+        "js/components/RoleSelector/RoleButton.js",
+        "js/components/RoleSelector/RoleSelector.js",
+        "js/components/CustomPromptEditor/constants.js",
+        "js/components/CustomPromptEditor/CustomPromptEditor.js",
+        "js/components/tabs/TabButtonComponent.js",
+        "js/components/tabs/TabPanelComponent.js",
+        "js/components/tabs/TabListComponent.js",
+        "js/components/tabs/TabComponent.js",
+        "js/components/marker/AuthorComponent.js",
+        "js/components/RoleSelector/index.js",
+        "js/components/UserRoleSelector/UserRoleSelector.js",
+        "js/components/CustomPromptEditor/index.js",
+        "js/services/ui/marker-content-manager/index.js",
+        "js/components/tabs/index.js",
+        "js/core/stateManager.js",
+        "js/core/messageHandler.js",
+        "js/core/eventHandlers.js",
+        "js/core/initializer.js",
+        "js/content.js"
+      ],
+      "css": [
+        "styles/global.css",
+        "styles/animations.css",
+        "styles/components/modal.css",
+        "styles/components/toggle-switch.css",
+        "styles/components/marker.css",
+        "styles/components/analyze-button.css",
+        "styles/components/background-info.css",
+        "styles/components/role-selector.css",
+        "styles/components/role-button.css",
+        "styles/components/custom-prompt-editor.css",
+        "styles/components/marker-content-manager.css",
+        "styles/components/tabs.css",
+        "styles/components/tab-panel.css",
+        "styles/components/tab-button.css"
+      ],
+      "run_at": "document_start"
+    }
+  ],
+  "host_permissions": [
+    "*://*.twitter.com/*",
+    "*://*.x.com/*"
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "icons/*",
+        "styles/*"
+      ],
+      "matches": ["*://*.twitter.com/*", "*://*.x.com/*"]
+    }
+  ],
+  "options_page": "options.html"
+} 

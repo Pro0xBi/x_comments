@@ -1,0 +1,79 @@
+/* styles/components/role-selector.css - Styles for RoleSelector container and layout */
+
+/* Scope container, separator, labels to RoleSelector instances */
+[data-component-id^="roleselector-"] .role-buttons-container {
+    /* 基础布局 */
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-xs);
+    
+    /* 盒模型 - 圆润 */
+    border-radius: var(--radius-lg);
+    /* padding: var(--space-md); */
+    padding: 0 var(--space-md); /* Set top/bottom padding to 0, keep left/right */
+    width: 100%;
+    max-width: 600px;
+    
+    /* 视觉样式 - 轻盈通透 */
+    background: rgba(var(--surface-color-rgb), 0.5);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+[data-component-id^="roleselector-"] .role-separator {
+    /* 基础布局 */
+    width: 90%;
+    height: 1px;
+    margin: 5px auto;
+    flex-basis: 100%;
+    
+    /* 视觉样式 - 渐变 */
+    border: none;
+    background: var(--gradient-primary);
+    opacity: 0.3;
+    
+    /* 动画效果 */
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-component-id^="roleselector-"]:hover .role-separator {
+    opacity: 0.5;
+    transform: scaleX(1.05);
+}
+
+[data-component-id^="roleselector-"] .role-section-label {
+    /* 基础布局 */
+    width: 100%;
+    text-align: left;
+    padding-left: 5%;
+    margin-bottom: 0;
+    margin-top: 0;
+    flex-basis: 100%;
+    
+    /* 文字样式 */
+    font-size: 11px;
+    color: var(--text-secondary);
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    
+    /* 动画效果 */
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-component-id^="roleselector-"]:hover .role-section-label {
+    color: var(--text-color);
+    transform: translateX(4px);
+}
+
+/* Adjust top margin for the first label (scoped) */
+[data-component-id^="roleselector-"] .role-section-label.preset-label {
+    margin-top: 0;
+}
+
+/* --- RoleButton Styles Moved to RoleButton.styles.js --- */ /* Comment retained for history */
+
+/* Dark mode styles (RoleSelector parts scoped) - REMOVED */
+/* @media (prefers-color-scheme: dark) { ... } */ 

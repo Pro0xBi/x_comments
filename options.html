@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>设置</title>
+  <!-- Link global styles first -->
+  <link rel="stylesheet" href="styles/global.css">
+  <link rel="stylesheet" href="styles/themes.css">
+  <link rel="stylesheet" href="styles/animations.css">
+
+  <!-- Link the page-specific CSS file -->
+  <link rel="stylesheet" href="styles/options.css">
+</head>
+<body>
+  <div class="container">
+    <h1>设置</h1>
+
+    <!-- Tab Bar -->
+    <div class="tab-bar">
+      <button class="tab-button active" data-tab="api-settings">API 配置</button>
+      <button class="tab-button" data-tab="custom-roles">自制角色</button>
+    </div>
+
+    <!-- Tab Content Panels -->
+    <div id="api-settings" class="tab-content active">
+      <!-- Existing API Management Content Goes Here -->
+      <div class="api-list-container">
+        <h2>API 列表</h2>
+        <div id="apiList" class="api-list">
+          <!-- API items will be loaded here by JS -->
+        </div>
+        <button id="addApi" class="btn btn-primary add-api">添加新的 API</button>
+        <div id="status" class="status"></div>
+      </div>
+      <!-- Disclaimer can stay outside specific tab or move here -->
+      <div class="disclaimer">
+        <div class="disclaimer-title">
+          <svg class="disclaimer-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 15c-.55 0-1-.45-1-1v-4c0-.55.45-1 1-1s1 .45 1 1v4c0 .55-.45 1-1 1zm1-8h-2V7h2v2z"/>
+          </svg>
+          免责声明
+        </div>
+        <ul class="disclaimer-list">
+          <li><strong>使用风险提示：</strong>通过本插件生成的内容仅供参考，可能包含错误、偏见或不当信息。用户对采纳、修改或发布这些内容所产生的一切后果自行承担责任。</li>
+          <li><strong>数据传输说明：</strong>核心功能依赖于第三方 AI 服务（如 DeepSeek）。使用时，您输入的文本及必要的上下文将发送给这些服务商进行处理。本插件自身不存储或处理这些内容。</li>
+          <li><strong>本地存储与隐私：</strong>您的 API 密钥和其他配置信息将加密存储在浏览器本地，插件本身不设服务器，最大限度保护您的隐私。但请注意保护好您的 API 密钥。</li>
+          <li><strong>合规性：</strong>请确保您使用本插件及生成内容的行为符合所有相关法律法规及 Twitter (X.com) 的平台规则。</li>
+          <li><strong>API密钥使用建议：</strong>为了保障您的账户安全和控制潜在风险，我们强烈建议您在使用本插件配置API密钥时，遵循以下最佳实践：1. 为该专用密钥设置合理的消费额度上限；2. 定期更换您在本插件中使用的API密钥。</li>
+        </ul>
+      </div>
+    </div>
+
+    <div id="custom-roles" class="tab-content">
+      <!-- Custom Role Management Content Goes Here -->
+       <div class="setting-section">
+          <h2>自制角色管理</h2>
+          <p>上传包含角色定义的 JSON 文件 (文件中不应包含 id 字段)。</p>
+          <p><small>注意：自定义角色仅保存在本地，不会跨设备同步。</small></p>
+          
+          <div class="upload-section">
+              <div class="upload-area">
+                  <label for="role-file-input" class="btn btn-secondary choose-file-label">选择文件</label> 
+                  <span id="selected-filename" class="selected-filename-display">未选择文件</span> 
+                  <input type="file" id="role-file-input" accept=".json"> 
+              </div>
+              <button id="upload-role-button" class="btn btn-primary">上传并保存角色</button> 
+          </div>
+          
+          <p id="upload-status" style="margin-top: 10px;"></p> 
+          
+          <h3>我的自定义角色列表</h3>
+          <div id="custom-roles-list">
+              <!-- 角色列表将由 JavaScript 动态填充 -->
+              <p>暂无自定义角色。</p> 
+          </div>
+      </div>
+    </div>
+
+  </div> <!-- End of container -->
+
+  <!-- API Modal (can likely stay outside the tabs/container) -->
+  <div id="apiModal" class="modal">
+    <div class="modal-content">
+      <h2 id="modalTitle">添加新的 API</h2>
+      
+      <div class="form-group">
+        <label for="apiProvider">服务商</label>
+        <select id="apiProvider" required>
+          <option value="deepseek">DeepSeek</option>
+          <!-- <option value="openai">OpenAI</option> --> <!-- Temporarily disable OpenAI -->
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="apiName">API 名称</label>
+        <input type="text" id="apiName" placeholder="为这个 API 设置一个名称" required>
+      </div>
+
+      <div class="form-group">
+        <label for="apiKey">API Key</label>
+        <input type="password" id="apiKey" placeholder="输入 API Key" required>
+      </div>
+
+      <div class="modal-actions">
+        <button id="cancelApi" class="btn btn-secondary">取消</button>
+        <button id="saveApi" class="btn btn-primary">保存</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- CORRECTED PATH for cryptoUtils.js -->
+  <script src="js/utils/crypto/cryptoUtils.js"></script>
+  <!-- Load shared theme utilities -->
+  <script src="js/utils/themeUtils.js"></script> 
+  <script src="js/services/options/apiConfigManager.js"></script>
+  <!-- Link the options page logic -->
+  <script src="js/options.js" defer></script>
+</body>
+</html> 

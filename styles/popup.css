@@ -1,0 +1,267 @@
+/* popup.css - Styles for popup page */
+
+/* REMOVED Theme Variable Definitions (.theme-light, .theme-dark) */
+
+/* Apply styles using variables */
+body {
+    width: 180px; /* RESTORED original width */
+    padding: 12px; /* RESTORED original padding */
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; /* RESTORED original font stack */
+    /* background-color: var(--popup-background); Defined below */
+    /* color: var(--text-color); Defined below */
+    overflow: hidden; /* Prevent scrollbars if content fits */
+
+    /* --- Directly define light theme variables (KEEP) --- */
+    --background-color: #f8f7fa;
+    --surface-color: #ffffff;
+    --surface-color-rgb: 255, 255, 255;
+    --popup-background: #ffffff; /* Use this for body background */
+    --text-color: #333333;
+    --text-secondary: #666666;
+    --text-disabled: #b0b0b0;
+    --text-on-primary: #ffffff;
+    --text-on-state: #ffffff;
+    --primary-color: #794bc4;
+    --primary-color-rgb: 121, 75, 196;
+    --primary-color-light: #9370db;
+    --primary-hover: #6a3eb0;
+    --link-color: var(--primary-color);
+    --link-hover-color: var(--primary-hover);
+    --border-color: rgba(var(--primary-color-rgb), 0.2);
+    --border-color-rgb: 121, 75, 196;
+    --error-color: #dc3545;
+    --error-color-rgb: 220, 53, 69;
+    --success-color: #28a745;
+    --success-color-rgb: 40, 167, 69;
+    --warning-color: #ffc107;
+    --warning-color-rgb: 255, 193, 7;
+    --info-color: #17a2b8;
+    --info-color-rgb: 23, 162, 184;
+    --hover-color: var(--primary-hover);
+    --hover-color-light: #825acb;
+    --surface-color-light: #f5f5f5;
+    /* --- End variable definitions --- */
+
+    /* Apply directly needed styles from variables (KEEP) */
+    background-color: var(--popup-background);
+    color: var(--text-color);
+}
+
+.header {
+    margin-bottom: 16px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo {
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+}
+
+.logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.brand-text {
+    flex-grow: 1;
+}
+
+.title {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-color); /* KEEP UPDATED variable */
+    margin: 0;
+    line-height: 1.2;
+}
+
+.subtitle {
+    font-size: 12px;
+    color: var(--text-secondary); /* KEEP UPDATED variable */
+    margin-top: 2px;
+}
+
+.toggle-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.toggle-label {
+    font-size: 14px;
+    color: var(--text-color); /* UPDATED from --popup-text-primary */
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 20px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--text-disabled); /* UPDATED from --popup-switch-bg, using --text-disabled as replacement */
+    transition: .4s;
+    border-radius: 20px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 2px;
+    bottom: 2px;
+    background-color: var(--text-on-primary); /* UPDATED from --popup-switch-slider, using white */
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: var(--primary-color); /* KEEP UPDATED variable */
+}
+
+input:checked + .slider:before {
+    transform: translateX(20px);
+}
+
+.status {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: var(--text-secondary); /* UPDATED from --popup-text-secondary */
+    margin-top: 12px; /* Space below toggle */
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    /* background-color will be set by JS using --success-color or --text-disabled */
+}
+
+/* Generic setting item container */
+.setting-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 12px; /* Space above setting item */
+}
+
+/* Generic setting label style */
+.setting-label {
+    font-size: 14px;
+    color: var(--text-color); /* UPDATED from --popup-text-primary */
+    flex-shrink: 0;
+    margin-right: 8px;
+}
+
+/* Style for the select dropdown control (If any remain or are added later) */
+.setting-control {
+    /* Keep most updated styles using general variables */
+    flex-grow: 1;
+    padding: 6px 10px;
+    font-size: 13px;
+    color: var(--text-color); /* KEEP UPDATED variable */
+    background-color: rgba(var(--primary-color-rgb), 0.05); /* KEEP UPDATED variable */
+    border: 1px solid var(--border-color); /* KEEP UPDATED variable */
+    border-radius: var(--radius-sm, 6px);
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6L8 10L12 6" stroke="${encodeURIComponent("var(--text-secondary)")}" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    padding-right: 30px;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.setting-control:hover {
+    background-color: rgba(var(--primary-color-rgb), 0.1); /* KEEP UPDATED variable */
+}
+
+.setting-control:focus {
+    outline: none;
+    border-color: var(--primary-color); /* KEEP UPDATED variable */
+    box-shadow: 0 0 0 2px rgba(var(--primary-color-rgb), 0.2);
+}
+
+.settings-container {
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border-color); /* KEEP UPDATED variable */
+}
+
+.settings-button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 12px 16px; /* RESTORED original padding */
+    background: rgba(var(--primary-color-rgb), 0.05); /* RESTORED original background (using updated var) */
+    border: 1px solid var(--border-color); /* RESTORED original border (using updated var) */
+    border-radius: 12px; /* RESTORED original radius */
+    cursor: pointer;
+    text-align: left; /* Keep */
+    color: var(--text-color); /* Keep updated var */
+    transition: all 0.3s ease; /* RESTORED original transition */
+}
+
+.settings-button:hover .settings-text,
+.settings-button:hover .settings-icon,
+.settings-button:hover .settings-arrow {
+    color: var(--primary-color); /* KEEP */
+}
+
+/* Restore original hover background if different */
+.settings-button:hover {
+     background: rgba(var(--primary-color-rgb), 0.1); /* RESTORED original hover background (using updated var) */
+}
+
+.settings-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.settings-icon {
+    width: 20px; /* RESTORED original width */
+    height: 20px; /* RESTORED original height */
+    color: var(--text-secondary); /* Keep updated var */
+    opacity: 0.8; /* Keep updated opacity */
+}
+
+.settings-text {
+    font-size: 13px; /* RESTORED original size */
+    font-weight: 500; /* RESTORED original weight */
+    color: inherit; /* Keep */
+}
+
+.settings-arrow {
+    width: 16px;
+    height: 16px;
+    color: var(--text-secondary); /* Keep updated var */
+    opacity: 0.6; /* Keep updated opacity */
+} 

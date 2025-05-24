@@ -1,0 +1,141 @@
+/* styles/components/marker.css - Styles for MarkerComponent and AuthorComponent */
+
+/* --- MarkerComponent Styles --- */
+/* Scope Marker styles */
+[data-component-id^="markercomponent-"].twitter-comment-marker {
+    /* 基础布局 */
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    width: 320px;
+    padding: 8px;
+    
+    /* 盒模型 - 圆润 */
+    border-radius: var(--radius-xl);
+    
+    /* 视觉样式 - 轻盈通透 */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    background: rgba(var(--surface-color-rgb), 0.85);
+    border: 1px solid rgba(var(--border-color-rgb), 0.1);
+    box-shadow: var(--shadow-lg);
+    color: var(--text-color);
+    
+    /* 交互样式 */
+    pointer-events: auto !important;
+    
+    /* 动画效果 */
+    opacity: 0;
+    transform: translateY(-8px) scale(0.98);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* --- 新增：直接定义浅色主题变量 --- */
+    --background-color: #f8f7fa;
+    --surface-color: #ffffff;
+    --surface-color-rgb: 255, 255, 255;
+    --popup-background: #ffffff;
+    --text-color: #333333;
+    --text-secondary: #666666;
+    --text-disabled: #b0b0b0;
+    --text-on-primary: #ffffff;
+    --text-on-state: #ffffff;
+    --primary-color: #794bc4;
+    --primary-color-rgb: 121, 75, 196;
+    --primary-color-light: #9370db;
+    --primary-hover: #6a3eb0;
+    --link-color: var(--primary-color);
+    --link-hover-color: var(--primary-hover);
+    --border-color: rgba(var(--primary-color-rgb), 0.2);
+    --border-color-rgb: 121, 75, 196;
+    --error-color: #dc3545;
+    --error-color-rgb: 220, 53, 69;
+    --success-color: #28a745;
+    --success-color-rgb: 40, 167, 69;
+    --warning-color: #ffc107;
+    --warning-color-rgb: 255, 193, 7;
+    --info-color: #17a2b8;
+    --info-color-rgb: 23, 162, 184;
+    --hover-color: var(--primary-hover);
+    --hover-color-light: #825acb;
+    --surface-color-light: #f5f5f5;
+    /* --- 结束新增 --- */
+
+    /* --- 新增控制高度 --- */
+    max-height: 800px; /* 限制最大高度为 450px */
+    overflow-y: auto;  /* 内容超出时显示垂直滚动条 */
+    /* --- 结束新增 --- */
+}
+
+[data-component-id^="markercomponent-"].twitter-comment-marker.visible {
+    display: block;
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+/* --- AuthorComponent Styles --- */
+/* Scope Author styles */
+/* Base styles applied via UIComponent's setStyles */ /* Comment retained for context */
+
+/* Styles for elements within AuthorComponent */
+[data-component-id^="authorcomponent-"] .author-details {
+    /* 基础布局 */
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    
+    /* 视觉样式 */
+    padding: var(--space-sm);
+    border-radius: var(--radius-lg);
+    background: rgba(var(--surface-color-rgb), 0.5);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+[data-component-id^="authorcomponent-"] .display-name {
+    /* 基础样式 */
+    font-weight: var(--font-weight-bold);
+    color: inherit;
+    cursor: pointer;
+    
+    /* 动画效果 */
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+}
+
+[data-component-id^="authorcomponent-"] .display-name:hover {
+    color: var(--primary-color);
+    transform: translateX(4px);
+}
+
+[data-component-id^="authorcomponent-"] .display-name::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: var(--gradient-primary);
+    transform: scaleX(0);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-origin: left;
+}
+
+[data-component-id^="authorcomponent-"] .display-name:hover::after {
+    transform: scaleX(1);
+}
+
+[data-component-id^="authorcomponent-"] .username {
+    /* 基础样式 */
+    color: var(--text-secondary);
+    font-size: 0.9em;
+    opacity: 0.8;
+    cursor: default;
+    
+    /* 动画效果 */
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-component-id^="authorcomponent-"] .username:hover {
+    opacity: 1;
+    transform: translateX(4px);
+}

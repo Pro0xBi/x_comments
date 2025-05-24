@@ -1,0 +1,439 @@
+/* options.css - Styles for options page */
+
+/* Theme Variable Definitions */
+.theme-light {
+  --options-page-background: #f8f7fa;
+  --options-container-background: white;
+  --options-container-shadow: 0 2px 8px rgba(121, 75, 196, 0.1);
+  --options-header-color: #794bc4;
+  --options-item-border: rgba(121, 75, 196, 0.1);
+  --options-item-background: white;
+  --options-item-hover-border: #794bc4;
+  --options-item-active-background: rgba(121, 75, 196, 0.05);
+  --options-text-primary: #333;
+  --options-text-secondary: #666;
+  --options-text-tertiary: #999;
+  --options-primary-color: #794bc4;
+  --options-primary-hover: #6a3eb0;
+  --options-btn-text: white;
+  --options-btn-secondary-bg: rgba(121, 75, 196, 0.1);
+  --options-btn-secondary-hover-bg: rgba(121, 75, 196, 0.15);
+  --options-btn-danger-bg: #dc3545;
+  --options-btn-danger-hover-bg: #c82333;
+  --options-modal-overlay-bg: rgba(0, 0, 0, 0.5); /* Consistent */
+  --options-modal-content-bg: white;
+  --options-modal-shadow: 0 4px 12px rgba(121, 75, 196, 0.15);
+  --options-input-border: rgba(121, 75, 196, 0.2);
+  --options-input-background: white;
+  --options-focus-shadow: 0 0 0 2px rgba(121, 75, 196, 0.1);
+  --options-success-bg: rgba(40, 167, 69, 0.1);
+  --options-success-text: #28a745;
+  --options-error-bg: rgba(220, 53, 69, 0.1);
+  --options-error-text: #dc3545;
+  --options-disclaimer-bg: rgba(121, 75, 196, 0.05);
+  --options-tab-border: rgba(121, 75, 196, 0.1);
+  --options-input-file-display-bg: #f8f7fa;
+  --options-input-file-display-border: #eee;
+  --options-list-item-border: #eee;
+  --options-list-detail-border: #eee;
+  --options-h2-border: #eee;
+}
+
+.theme-dark {
+  --options-page-background: #1a1a1a;
+  --options-container-background: #2a2a2a;
+  --options-container-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --options-header-color: #a67fef;
+  --options-item-border: rgba(166, 127, 239, 0.2);
+  --options-item-background: #2a2a2a;
+  --options-item-hover-border: #a67fef;
+  --options-item-active-background: rgba(166, 127, 239, 0.1);
+  --options-text-primary: #eee;
+  --options-text-secondary: #999;
+  --options-text-tertiary: #777;
+  --options-primary-color: #a67fef;
+  --options-primary-hover: #794bc4;
+  --options-btn-text: white;
+  --options-btn-secondary-bg: rgba(166, 127, 239, 0.2);
+  --options-btn-secondary-hover-bg: rgba(166, 127, 239, 0.3);
+  --options-btn-danger-bg: #e57373;
+  --options-btn-danger-hover-bg: #dc3545;
+  --options-modal-overlay-bg: rgba(0, 0, 0, 0.5); /* Consistent */
+  --options-modal-content-bg: #2a2a2a;
+  --options-modal-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --options-input-border: rgba(166, 127, 239, 0.3);
+  --options-input-background: #3a3a3a;
+  --options-focus-shadow: 0 0 0 2px rgba(166, 127, 239, 0.2);
+  --options-success-bg: rgba(46, 125, 50, 0.3);
+  --options-success-text: #c8e6c9;
+  --options-error-bg: rgba(73, 26, 33, 0.5);
+  --options-error-text: #f5c6cb;
+  --options-disclaimer-bg: rgba(166, 127, 239, 0.1);
+  --options-tab-border: rgba(166, 127, 239, 0.2);
+  --options-input-file-display-bg: #3a3a3a;
+  --options-input-file-display-border: #444;
+  --options-list-item-border: #444;
+  --options-list-detail-border: #444;
+  --options-h2-border: #444;
+}
+
+/* Apply base styles using variables */
+body {
+  padding: 20px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  max-width: 800px;
+  margin: 0 auto;
+  background: var(--options-page-background);
+  color: var(--options-text-primary); /* Add default text color */
+}
+.container {
+  background: var(--options-container-background);
+  padding: 24px;
+  border-radius: 16px;
+  box-shadow: var(--options-container-shadow);
+}
+h1 {
+  color: var(--options-header-color);
+  font-size: 24px;
+  margin-bottom: 16px;
+  font-weight: 600;
+}
+.api-list {
+  margin-bottom: 20px;
+}
+.api-item {
+  border: 1px solid var(--options-item-border);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--options-item-background);
+  transition: all 0.2s;
+}
+.api-item:hover {
+  border-color: var(--options-item-hover-border);
+  box-shadow: var(--options-container-shadow); /* Re-use container shadow? */
+}
+.api-item.active {
+  border-color: var(--options-primary-color);
+  background: var(--options-item-active-background);
+}
+.api-info {
+  flex-grow: 1;
+}
+.api-name {
+  font-weight: 600;
+  color: var(--options-text-primary);
+  margin-bottom: 4px;
+}
+.api-provider {
+  color: var(--options-text-secondary);
+  font-size: 14px;
+}
+.api-key {
+  font-family: monospace;
+  color: var(--options-text-secondary);
+  margin-top: 4px;
+}
+.api-actions {
+  display: flex;
+  gap: 8px;
+}
+.btn {
+  padding: 8px 16px;
+  border-radius: 12px;
+  border: none;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-primary {
+  background: var(--options-primary-color);
+  color: var(--options-btn-text);
+}
+.btn-primary:hover {
+  background: var(--options-primary-hover);
+}
+.btn-secondary {
+  background: var(--options-btn-secondary-bg);
+  color: var(--options-primary-color);
+}
+.btn-secondary:hover {
+  background: var(--options-btn-secondary-hover-bg);
+}
+.btn-danger {
+  background: var(--options-btn-danger-bg);
+  color: var(--options-btn-text);
+}
+.btn-danger:hover {
+  background: var(--options-btn-danger-hover-bg);
+}
+.add-api {
+  width: 100%;
+  margin-top: 16px;
+}
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--options-modal-overlay-bg);
+  z-index: 1000;
+}
+.modal-content {
+  position: relative;
+  background: var(--options-modal-content-bg);
+  width: 90%;
+  max-width: 500px;
+  margin: 40px auto;
+  padding: 24px;
+  border-radius: 16px;
+  box-shadow: var(--options-modal-shadow);
+}
+.form-group {
+  margin-bottom: 16px;
+}
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: var(--options-text-primary);
+}
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid var(--options-input-border);
+  border-radius: 12px;
+  font-size: 14px;
+  background: var(--options-input-background);
+  color: var(--options-text-primary); /* Added text color */
+}
+.form-group input:focus,
+.form-group select:focus {
+  border-color: var(--options-primary-color);
+  outline: none;
+  box-shadow: var(--options-focus-shadow);
+}
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 24px;
+}
+.status {
+  margin-top: 16px;
+  padding: 12px;
+  border-radius: 12px;
+  display: none;
+}
+.success {
+  background: var(--options-success-bg);
+  color: var(--options-success-text);
+}
+.error {
+  background: var(--options-error-bg);
+  color: var(--options-error-text);
+}
+
+.disclaimer {
+  margin-top: 24px;
+  padding: 16px;
+  border-radius: 12px;
+  background: var(--options-disclaimer-bg);
+  font-size: 13px;
+  color: var(--options-text-secondary);
+  line-height: 1.5;
+}
+
+.disclaimer-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  color: var(--options-primary-color);
+  font-weight: 500;
+}
+
+.disclaimer-icon {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+}
+
+.disclaimer-list {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.disclaimer-list li {
+  margin-bottom: 8px;
+}
+
+.disclaimer-list li:last-child {
+  margin-bottom: 0;
+}
+
+/* --- Tab Styles --- */
+.tab-bar {
+  display: flex;
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--options-tab-border);
+}
+.tab-button {
+  padding: 10px 20px;
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--options-text-secondary);
+  border-bottom: 3px solid transparent;
+  margin-bottom: -1px; /* Overlap with container border */
+  transition: all 0.2s;
+}
+.tab-button:hover {
+  color: var(--options-text-primary);
+}
+.tab-button.active {
+  color: var(--options-primary-color);
+  border-bottom-color: var(--options-primary-color);
+}
+.tab-content {
+  display: none; /* Hide content by default */
+}
+.tab-content.active {
+  display: block; /* Show active content */
+}
+/* --- End Tab Styles --- */
+
+/* --- Custom File Input Styles --- */
+.upload-section {
+    margin-bottom: 20px;
+}
+.upload-area {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px; 
+}
+.choose-file-label {
+    /* Inherits .btn .btn-secondary styles */
+    /* Assuming .btn and .btn-secondary are defined above */
+}
+/* Updated styles for file display */
+.selected-filename-display {
+    font-style: italic;
+    color: var(--options-text-secondary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 300px; /* Adjust as needed */
+    display: inline-block; 
+    vertical-align: middle; 
+    border: 1px solid var(--options-input-file-display-border);
+    padding: 6px 10px;
+    border-radius: 8px;
+    background-color: var(--options-input-file-display-bg);
+    flex-grow: 1; /* Take remaining space */
+}
+#role-file-input {
+    display: none; /* Hide the actual input */
+}
+#upload-role-button {
+    /* Ensure margin is appropriate */
+    margin-top: 0;
+}
+/* --- End Custom File Input Styles --- */
+
+/* --- Role List Detail Styles --- */
+.role-list-item {
+    margin-bottom: 10px;
+    border-bottom: 1px solid var(--options-list-item-border);
+    padding-bottom: 10px;
+}
+
+.role-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer; /* Indicate the header is clickable for toggle */
+}
+
+.role-name {
+    font-weight: 500;
+    margin-right: 15px;
+    flex-grow: 1; /* Allow name to take space */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: var(--options-text-primary); /* Added text color */
+}
+
+.role-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.toggle-details-button {
+    background: none;
+    border: none;
+    padding: 2px 5px; /* Smaller padding */
+    cursor: pointer;
+    font-size: 12px; /* Smaller icon/text */
+    color: var(--options-text-secondary);
+    line-height: 1;
+    transition: transform 0.2s ease-in-out;
+}
+
+.toggle-details-button.expanded {
+    transform: rotate(90deg);
+}
+
+.role-details {
+    display: none; /* Hidden by default */
+    margin-top: 10px;
+    padding-left: 15px; /* Indent details */
+    padding-top: 10px;
+    border-top: 1px dashed var(--options-list-detail-border);
+    font-size: 13px;
+    color: var(--options-text-primary);
+    word-wrap: break-word; /* Allow long words/prompts to wrap */
+    white-space: pre-wrap; /* Preserve whitespace and line breaks in prompts */
+}
+
+.role-details.visible {
+    display: block; /* Shown when active */
+}
+
+.role-details p {
+    margin-top: 0;
+    margin-bottom: 8px;
+}
+
+.role-details strong {
+    display: block;
+    margin-bottom: 4px;
+    color: var(--options-primary-color);
+    font-weight: 600;
+}
+/* --- End Role List Detail Styles --- */
+
+/* Adjust styles for elements moved into tabs if needed */
+.setting-section h2 {
+    font-size: 20px;
+    color: var(--options-text-primary);
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--options-h2-border);
+}
+
+/* REMOVE Dark mode media query as it's handled by theme classes now */
+/* @media (prefers-color-scheme: dark) { ... } */ 

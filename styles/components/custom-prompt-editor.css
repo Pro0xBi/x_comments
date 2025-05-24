@@ -1,0 +1,127 @@
+/* Scope all selectors to CustomPromptEditor instances */
+[data-component-id^="customprompteditor-"] .prompt-section {
+    margin-bottom: var(--space-md);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    background: rgba(var(--surface-color-rgb), 0.8);
+    border-radius: var(--radius-lg);
+    padding: var(--space-md);
+    box-shadow: var(--shadow-sm);
+}
+
+[data-component-id^="customprompteditor-"] .prompt-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-sm);
+    font-weight: 600;
+    font-size: 13px;
+    color: var(--text-color);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-component-id^="customprompteditor-"] .label-text {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+}
+
+[data-component-id^="customprompteditor-"] .label-header {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+[data-component-id^="customprompteditor-"] .prompt-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+}
+
+[data-component-id^="customprompteditor-"] .prompt-btn {
+    background: none;
+    border: none;
+    padding: var(--space-xs) var(--space-sm);
+    cursor: pointer;
+    font-size: 16px;
+    color: var(--text-secondary);
+    border-radius: var(--radius-full);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-component-id^="customprompteditor-"] .prompt-btn:hover {
+    color: var(--link-color);
+    background: rgba(var(--surface-color-rgb), 0.1);
+    transform: scale(1.05);
+}
+
+[data-component-id^="customprompteditor-"] .system-prompt,
+[data-component-id^="customprompteditor-"] .user-prompt {
+    width: 100%;
+    padding: var(--space-md);
+    border: 1px solid rgba(var(--border-color-rgb), 0.2);
+    border-radius: var(--radius-lg);
+    font-size: 13px;
+    line-height: 1.5;
+    resize: vertical;
+    min-height: 80px;
+    box-sizing: border-box;
+    background: rgba(var(--surface-color-rgb), 0.5);
+    color: var(--text-color);
+    font-family: inherit;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-component-id^="customprompteditor-"] .system-prompt:focus,
+[data-component-id^="customprompteditor-"] .user-prompt:focus {
+    border-color: var(--link-color);
+    outline: none;
+    box-shadow: 0 0 0 2px var(--link-transparent);
+    background: rgba(var(--surface-color-rgb), 0.8);
+}
+
+[data-component-id^="customprompteditor-"] .info-icon {
+    width: 16px;
+    height: 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: var(--space-xs);
+    font-size: 11px;
+    color: var(--text-secondary);
+    cursor: help;
+    border: 1px solid rgba(var(--border-color-rgb), 0.2);
+    border-radius: var(--radius-full);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-component-id^="customprompteditor-"] .info-icon:hover {
+    background: rgba(var(--surface-color-rgb), 0.1);
+    transform: scale(1.1);
+}
+
+/* Styles for the toast notification */
+.custom-prompt-editor-toast {
+    position: fixed;
+    bottom: var(--space-lg);
+    left: 50%;
+    transform: translateX(-50%);
+    padding: var(--space-sm) var(--space-lg);
+    background: rgba(var(--toast-background-rgb), 0.9);
+    color: var(--toast-text);
+    border-radius: var(--radius-lg);
+    z-index: 10000;
+    font-size: 14px;
+    box-shadow: var(--shadow-md);
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+.custom-prompt-editor-toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-8px);
+}
+
+/* Dark mode adjustments were previously here but removed as they rely on CSS variables now */

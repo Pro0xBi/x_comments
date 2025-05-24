@@ -1,0 +1,59 @@
+.marker-content {
+    /* 基础布局 */
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    
+    /* 盒模型 - 圆润 */
+    padding: 10px;
+    border-radius: var(--radius-lg);
+    
+    /* 视觉样式 - 轻盈通透 */
+    background: rgba(var(--surface-color-rgb), 0.8);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(var(--border-color-rgb), 0.1);
+    box-shadow: var(--shadow-sm);
+}
+
+.marker-content .content {
+    /* 基础布局 */
+    margin: var(--space-md) 0;
+    
+    /* 文字样式 */
+    font-size: 14px;
+    line-height: 1.6;
+    word-break: break-word;
+    color: var(--text-color);
+    
+    /* 动画效果 */
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* --- 新增：控制高度和滚动 --- */
+    max-height: 200px; /* 设置最大高度 */
+    overflow-y: auto;  /* 超出时显示滚动条 */
+    /* --- 结束新增 --- */
+}
+
+/* 动画效果 */
+.marker-content-enter {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.98);
+}
+
+.marker-content-enter-active {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.marker-content-exit {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+.marker-content-exit-active {
+    opacity: 0;
+    transform: translateY(10px) scale(0.98);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}

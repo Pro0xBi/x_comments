@@ -1,0 +1,380 @@
+/* styles/components/analyze-button.css - Styles for AnalyzeButton and its result container */
+
+/* 基础按钮样式 */
+.analyze-button {
+    /* 基础布局 */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-xs);
+    
+    /* 盒模型 - 圆润 */
+    padding: var(--space-sm) var(--space-md);
+    border-radius: var(--radius-full);
+    min-width: 280px;
+    max-width: 480px;
+    width: 100%;
+    height: var(--component-height-md);
+    
+    /* 视觉样式 - 轻盈通透 */
+    background: rgba(var(--surface-color-rgb), 0.8);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(var(--border-color-rgb), 0.1);
+    box-shadow: var(--shadow-sm);
+    
+    /* 文字样式 */
+    color: var(--text-secondary);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.5;
+    
+    /* 交互样式 */
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease, opacity 0.3s ease;
+}
+
+/* 悬停状态 - 轻盈 */
+.analyze-button:hover:not(:disabled):not(.is-loading):not(.preset-mode):not(.custom-mode):not(.success):not(.error) {
+    background: rgba(var(--surface-color-rgb), 0.9);
+    border-color: rgba(var(--border-color-rgb), 0.2);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-1px);
+}
+
+/* 预设模式 - 统一使用主色调紫色渐变 */
+.analyze-button.preset-mode {
+    background: var(--gradient-primary, linear-gradient(to right, var(--primary-color), var(--primary-color-light, var(--primary-color)))); 
+    border: none;
+    color: white;
+    box-shadow: 0 2px 4px rgba(var(--primary-color-rgb, 121, 75, 196), 0.2);
+}
+
+.analyze-button.preset-mode:hover:not(:disabled):not(.is-loading) {
+    background: var(--gradient-primary-hover, linear-gradient(to right, var(--primary-hover, var(--primary-color)), var(--primary-color))); 
+    box-shadow: 0 4px 8px rgba(var(--primary-color-rgb, 121, 75, 196), 0.3);
+    transform: translateY(-1px);
+}
+
+/* 自定义模式 - 渐变 */
+.analyze-button.custom-mode {
+    /* 修改背景为紫色渐变 */
+    background: var(--gradient-primary, linear-gradient(to right, var(--primary-color), var(--primary-color-light, var(--primary-color)))); 
+    border: none;
+    color: white;
+    /* 修改阴影颜色为紫色 */
+    box-shadow: 0 2px 4px rgba(var(--primary-color-rgb, 121, 75, 196), 0.2);
+}
+
+.analyze-button.custom-mode:hover:not(:disabled):not(.is-loading) {
+    /* 修改悬停背景为紫色渐变 */
+    background: var(--gradient-primary-hover, linear-gradient(to right, var(--primary-hover, var(--primary-color)), var(--primary-color))); 
+    /* 修改悬停阴影颜色为紫色 */
+    box-shadow: 0 4px 8px rgba(var(--primary-color-rgb, 121, 75, 196), 0.3);
+    transform: translateY(-1px);
+}
+
+/* 成功状态 - 渐变 (改为使用 Primary 紫色) */
+.analyze-button.success {
+    background: var(--gradient-primary, linear-gradient(to right, var(--primary-color), var(--primary-color-light, var(--primary-color))));
+    border: none;
+    color: white;
+    box-shadow: 0 2px 4px rgba(var(--primary-color-rgb, 121, 75, 196), 0.2);
+}
+
+.analyze-button.success:hover:not(:disabled) {
+    background: var(--gradient-primary-hover, linear-gradient(to right, var(--primary-hover, var(--primary-color)), var(--primary-color)));
+    box-shadow: 0 4px 8px rgba(var(--primary-color-rgb, 121, 75, 196), 0.3);
+    transform: translateY(-1px);
+}
+
+/* 错误状态 - 渐变 */
+.analyze-button.error {
+    background: var(--gradient-error, linear-gradient(to right, #dc3545, #e57373));
+    border: none;
+    color: white;
+    box-shadow: 0 2px 4px rgba(var(--error-color-rgb, 220, 53, 69), 0.2);
+}
+
+.analyze-button.error:hover:not(:disabled) {
+    background: var(--gradient-error-hover, linear-gradient(to right, #e57373, #ef9a9a));
+    box-shadow: 0 4px 8px rgba(var(--error-color-rgb, 220, 53, 69), 0.3);
+    transform: translateY(-1px);
+}
+
+/* 禁用状态 - 通透 */
+.analyze-button:disabled,
+.analyze-button.disabled {
+    opacity: var(--opacity-disabled, 0.5);
+    cursor: not-allowed;
+    pointer-events: none;
+    transform: none;
+}
+
+/* 加载状态 */
+.analyze-button.is-loading {
+    position: relative;
+    color: transparent !important;
+}
+
+.analyze-button .spinner {
+    display: none;
+    width: 16px;
+    height: 16px;
+    border: 2px solid white;
+    border-top-color: transparent;
+    border-radius: var(--radius-full);
+    animation: spin 0.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    margin-left: var(--space-xs);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -8px;
+    margin-top: -8px;
+}
+
+.analyze-button.is-loading .spinner {
+    display: inline-block;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* 结果容器样式 */
+.analyze-result-container {
+    /* 基础布局 */
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    
+    /* 盒模型 - 圆润 */
+    margin-top: var(--space-md);
+    padding: var(--space-md);
+    border-radius: var(--radius-lg);
+    
+    /* 视觉样式 - 轻盈通透 */
+    background: rgba(var(--surface-color-rgb), 0.8);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(var(--border-color-rgb), 0.1);
+    box-shadow: var(--shadow-sm);
+    
+    /* 尺寸控制 */
+    width: 100%;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+    
+    /* 动画效果 */
+    opacity: 0;
+    transform: translateY(-8px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.analyze-result-container.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 错误容器样式 */
+.error-container {
+    /* 基础布局 */
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    
+    /* 盒模型 - 圆润 */
+    padding: var(--space-sm) var(--space-md);
+    border-radius: var(--radius-md);
+    
+    /* 视觉样式 - 轻盈通透 */
+    background: rgba(var(--error-color-rgb), 0.1);
+    border: 1px solid rgba(var(--error-color-rgb), 0.2);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}
+
+/* 错误图标样式 */
+.error-icon {
+    /* 基础布局 */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    
+    /* 盒模型 - 圆润 */
+    width: 20px;
+    height: 20px;
+    border-radius: var(--radius-full);
+    
+    /* 视觉样式 */
+    background: var(--gradient-error);
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    box-shadow: 0 2px 4px rgba(var(--error-color-rgb), 0.2);
+}
+
+/* 错误消息样式 */
+.error-message {
+    color: var(--error-color);
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* 分析预览容器样式 */
+.analysis-preview-container {
+    /* --- ADDED: Directly define necessary light theme variables for children --- */
+    --surface-color: #ffffff;
+    --surface-color-rgb: 255, 255, 255;
+    --text-color: #333333;
+    --text-secondary: #666666;
+    --primary-color: #794bc4;
+    --primary-color-rgb: 121, 75, 196;
+    --border-color: rgba(var(--primary-color-rgb), 0.2);
+    --border-color-rgb: 121, 75, 196;
+    /* Assuming global.css provides --space-xs, --space-sm, --radius-md */
+    /* --- End added variables --- */
+
+    /* 基础布局 */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-sm);
+    
+    /* 盒模型 */
+    width: 100%;
+    padding: var(--space-sm) 0;
+}
+
+/* 预览文本样式 */
+.analysis-preview-text {
+    color: var(--text-secondary);
+    font-size: 14px;
+    line-height: 1.5;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* 查看详情按钮样式 */
+.analysis-read-more-btn {
+    /* 基础布局 */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    
+    /* 盒模型 - 圆润 */
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: var(--radius-md);
+    
+    /* 视觉样式 - 轻盈通透 */
+    background: rgba(var(--surface-color-rgb), 0.8);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(var(--border-color-rgb), 0.1);
+    
+    /* 文字样式 */
+    color: var(--primary-color);
+    font-size: 12px;
+    font-weight: 500;
+    
+    /* 交互样式 */
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.analysis-read-more-btn:hover {
+    background: rgba(var(--surface-color-rgb), 0.9);
+    border-color: rgba(var(--border-color-rgb), 0.2);
+    transform: translateY(-1px);
+}
+
+/* + Styles for NO_CONFIG state */
+.analyze-button.no-config {
+    background-color: var(--button-disabled-bg-color, #f8f8f8);
+    border-color: var(--button-disabled-border-color, #dcdcdc);
+    color: var(--button-disabled-text-color, #ababab);
+    cursor: pointer; /* 让用户知道可以点击打开选项页 */
+    opacity: 0.8;
+}
+
+.analyze-button.no-config:hover {
+    background-color: var(--button-disabled-hover-bg-color, #efefef);
+}
+
+/* + Styles for WAITING_DATA state */
+.analyze-button.waiting-data {
+    background-color: var(--button-disabled-bg-color, #f8f8f8);
+    border-color: var(--button-disabled-border-color, #dcdcdc);
+    color: var(--button-disabled-text-color, #ababab);
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+/* Ensure the button is interactive only in IDLE, ERROR, SUCCESS states */
+.analyze-button:not(.loading):not(.disabled):not(.no-config):not(.waiting-data) {
+    cursor: pointer;
+    opacity: 1;
+}
+
+/* Adjust hover styles for interactive states */
+.analyze-button:not(.loading):not(.disabled):not(.no-config):not(.waiting-data):hover {
+     background-color: var(--button-hover-bg-color, #e0e0e0);
+     border-color: var(--button-hover-border-color, #bdbdbd);
+}
+
+/* Spinner styles (if not already defined globally) */
+.analyze-button .spinner {
+    /* ... existing spinner styles ... */
+}
+
+.analyze-button.is-loading .spinner {
+    display: inline-block; /* Or appropriate display value */
+}
+
+.analyze-button:not(.is-loading) .spinner {
+    display: none;
+}
+
+/* Styles for the result preview area displayed by AnalyzeButton */
+.analyze-result-container.visible {
+    display: block; /* Ensure it's visible */
+    padding: 10px;
+    border: 1px solid #cfd9de; /* Twitter分割线颜色 */
+    border-radius: 8px;
+    margin-top: 10px;
+    background-color: #ffffff;
+    text-align: left; /* Ensure text is aligned to the left */
+}
+
+.analyze-result-container .ai-result-preview-text {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: #536471; /* Twitter 次要文本颜色 */
+    word-wrap: break-word; /* Ensure long words break */
+    white-space: normal; /* Allow normal white space handling */
+}
+
+.view-full-result-button {
+    display: inline; /* 改为 inline，使其像文本一样流动 */
+    padding: 0; /* 移除内边距 */
+    margin-top: 8px; /* 保持与预览文本的间距 */
+    font-size: 13px;
+    font-weight: normal; /* 普通字重 */
+    color: #1d9bf0; /* Twitter 蓝色 */
+    background-color: transparent; /* 透明背景 */
+    border: none; /* 无边框 */
+    border-radius: 0; /* 无圆角 */
+    cursor: pointer;
+    text-align: left; /* 左对齐 */
+    text-decoration: none; /* 通常链接没有下划线 */
+    transition: color 0.2s ease-in-out; /* 颜色过渡 */
+}
+
+.view-full-result-button:hover {
+    color: #0c85d9; /* 鼠标悬停时深一点的蓝色 */
+    text-decoration: underline; /* 鼠标悬停时加下划线，更像链接 */
+    background-color: transparent; /* 确保悬停时背景依然透明 */
+} 
