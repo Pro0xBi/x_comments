@@ -130,7 +130,7 @@
 
 ## 贡献
 
-欢迎提出 Issue 或 Pull Request！
+暂不接受Pull Request。欢迎提Issue。
 
 ## 许可证
 
